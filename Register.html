@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Cpmpatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoBU Martial Arts Gym Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="register.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?
+family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+</head>
+<body>
+    <section class="header">
+        <nav class="fixed-nav">
+            <a href="Home.html"><img src="images/DMALogo.jpg"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="Home.html">HOME</a></li>
+                    <li><a href="About.html">ABOUT</a></li>
+                    <li><a href="Classes.html">CLASSES</a></li>
+                    <li><a href="Services.html">SERVICES</a></li>
+                    <li><a href="Instructors.html">INSTRUCTORS</a></li>
+                    <li><a href="Contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="subtext">
+        <h1>ABOUT US</h1>
+    </div>
+</section>
+<div class="registration">
+    <div class="form-container" id="registration-form">
+        <h2>Registration</h2>
+        <div class="message" id="registration-message"></div>
+        <input type="text" id="reg-username" placeholder="Username">
+        <input type="email" id="reg-email" placeholder="Email">
+        <input type="password" id="reg-password" placeholder="Password">
+        <button onclick="registerUser()">Register</button>
+        <p>Already have an account? <a href="javascript:void(0);" onclick="toggleForm('login')">Login</a></p>
+    </div>
+    <div class="form-container" id="login-form" style="display: none">
+        <h2>Login</h2>
+        <div class="message" id="login-message"></div>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="loginUser()">Login</button>
+        <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleForm('register')">Register</a></p>
+    </div>
+</div>
+
+
+<!----------CTA----------->
+<section>
+    <section class="cta">
+        <h1>Unlock your hidden potential</h1>
+        <a href="Contact.html" class="hero-btn">CONTACT US</a>
+    </section>
+</section>
+
+<!----------Footer----------->
+<section class="footer">
+    <h4>About Us</h4>
+    <p>DoBu Martial Arts is a premier martial arts gym dedicated to empowering individuals <br>
+         through the discipline and artistry of various martial forms. </p>
+         <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+         </div>
+         <p>Made with <i class="fa fa-heart-o"></i> by WebSpace </p>
+</section>
+
+
+
+
+
+<!-----JAVASCRIPT FOR TOGGLE MENU----->
+<script>
+
+var navLinks = document.getElementById("navLinks");
+function showMenu() {
+    navLinks.style.right = "0";
+}
+function hideMenu() {
+    navLinks.style.right = "-200px";
+}
+</script>
+<script>
+    function toggleForm(formType) {
+        var registrationForm = document.getElementById('registration-form');
+        var loginForm = document.getElementById('login-form');
+
+        if (formType === 'login') {
+            registrationForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        } else if (formType === 'register') {
+            loginForm.style.display = 'none';
+            registrationForm.style.display = 'block';
+        }
+    }
+
+    function registerUser() {
+        var username = document.getElementById('reg-username').value;
+        var email = document.getElementById('reg-email').value;
+        var password = document.getElementById('reg-password').value;
+        var registrationMessage = document.getElementById('registration-message');
+
+        if (username === '' || email === '' || password === '') {
+            registrationMessage.innerHTML = 'Please fill in all fields.';
+        } else if (!validateEmail(email)) {
+            registrationMessage.innerHTML = 'Invalid email address.';
+        } else if (password.length < 6) {
+            registrationMessage.innerHTML = 'Password must be at least 6 characters long.';
+        } else {
+            registrationMessage.innerHTML = 'Registration successful.';
+            registrationMessage.style.color = 'green';
+        }
+    }
+
+    function loginUser() {
+        var email = document.getElementById('login-email').value;
+        var password = document.getElementById('login-password').value;
+        var loginMessage = document.getElementById('login-message');
+
+        if (email === '' || password === '') {
+            loginMessage.innerHTML = 'Please fill in all fields.';
+        } else if (!validateEmail(email)) {
+            loginMessage.innerHTML = 'Invalid email address.';
+        } else if (password.length < 6) {
+            loginMessage.innerHTML = 'Password must be at least 6 characters long.';
+        } else {
+            
+            loginMessage.innerHTML = 'Login successful.';
+            loginMessage.style.color = 'green';
+        }
+    }
+    function validateEmail(email) {
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+</script>
+</body>
+</html>
